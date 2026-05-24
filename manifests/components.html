@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/12 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">12/12 infos</a><span class="filter-pill ok" aria-disabled="true">38 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/13 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">13/13 infos</a><span class="filter-pill ok" aria-disabled="true">40 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1218,9 +1218,9 @@ userId: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatView</h2>
       <div class="badges">
-        <label for="c-4-chat-chatview-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-4-chat-chatview-props" class="badge ok as-toggle">12 prop types</label>
         <label for="c-4-chat-chatview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-4-chat-chatview-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-4-chat-chatview-stories" class="badge ok as-toggle">6 stories</label>
         
       </div>
     </div>
@@ -1252,7 +1252,7 @@ userId: string</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">11 prop types</span>
+              <span class="badge ok">12 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatView.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -1269,6 +1269,8 @@ loading: boolean
 mediaStates?: Record&lt;string, MediaState&gt; = {}
 
 messages: Message[]
+
+online: boolean
 
 onMediaRetry?: (url: string) =&gt; void = () =&gt; {}
 
@@ -1302,6 +1304,7 @@ sending: boolean</code></pre>
               <pre><code>const Empty = () =&gt; &lt;ChatView
     onSend={fn()}
     encryptionReady
+    online
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1319,6 +1322,7 @@ sending: boolean</code></pre>
               <pre><code>const SavedEmpty = () =&gt; &lt;ChatView
     onSend={fn()}
     encryptionReady
+    online
     chatTitle=&quot;Saved Messages&quot;
     isSaved
     handle=&quot;saved&quot;
@@ -1336,6 +1340,7 @@ sending: boolean</code></pre>
               <pre><code>const Loading = () =&gt; &lt;ChatView
     onSend={fn()}
     encryptionReady
+    online
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1353,6 +1358,7 @@ sending: boolean</code></pre>
               <pre><code>const WithMessages = () =&gt; &lt;ChatView
     onSend={fn()}
     encryptionReady
+    online
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1389,6 +1395,7 @@ sending: boolean</code></pre>
               <pre><code>const Sending = () =&gt; &lt;ChatView
     onSend={fn()}
     encryptionReady
+    online
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1402,6 +1409,31 @@ sending: boolean</code></pre>
     ]}
     loading={false}
     sending /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Offline</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Offline = () =&gt; &lt;ChatView
+    onSend={fn()}
+    encryptionReady
+    online={false}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;This was synced before the network dropped.&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:30:00Z&#39;),
+            sent: false,
+        },
+    ]}
+    loading={false}
+    sending={false} /&gt;;</code></pre>
             </div>
         </div>
     
@@ -1701,14 +1733,82 @@ onLogin: (handle: string, mnemonic: string) =&gt; void</code></pre>
   no-story-error
   no-doc-error"
   role="listitem"
+  aria-label="OfflineIndicator">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> OfflineIndicator</h2>
+      <div class="badges">
+        
+        <label for="c-8-app-offlineindicator-info" class="badge info as-toggle">1 info</label>
+        <label for="c-8-app-offlineindicator-stories" class="badge ok as-toggle">1 story</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/OfflineIndicator.stories.tsx">app-offlineindicator · ./src/components/OfflineIndicator.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="c-8-app-offlineindicator-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-8-app-offlineindicator-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { OfflineIndicator } from "atmin-web";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;OfflineIndicator /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
   aria-label="ProfileSettings">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ProfileSettings</h2>
       <div class="badges">
-        <label for="c-8-settings-profilesettings-props" class="badge ok as-toggle">4 prop types</label>
-        <label for="c-8-settings-profilesettings-info" class="badge info as-toggle">1 info</label>
-        <label for="c-8-settings-profilesettings-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-9-settings-profilesettings-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-9-settings-profilesettings-info" class="badge info as-toggle">1 info</label>
+        <label for="c-9-settings-profilesettings-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -1720,10 +1820,10 @@ onLogin: (handle: string, mnemonic: string) =&gt; void</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-8-settings-profilesettings-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-8-settings-profilesettings-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-9-settings-profilesettings-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-9-settings-profilesettings-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-8-settings-profilesettings-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-9-settings-profilesettings-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1803,9 +1903,9 @@ token: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-err"></span> PWAIcons</h2>
       <div class="badges">
-        <label for="c-9-assets-pwa-icons-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-9-assets-pwa-icons-info" class="badge info as-toggle">2 infos</label>
-        <label for="c-9-assets-pwa-icons-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-10-assets-pwa-icons-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-10-assets-pwa-icons-info" class="badge info as-toggle">2 infos</label>
+        <label for="c-10-assets-pwa-icons-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -1816,9 +1916,9 @@ token: string</code></pre>
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-9-assets-pwa-icons-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-9-assets-pwa-icons-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-9-assets-pwa-icons-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-10-assets-pwa-icons-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-10-assets-pwa-icons-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-10-assets-pwa-icons-stories" class="tg tg-stories" type="checkbox" hidden />
   
   
 
@@ -1977,9 +2077,9 @@ export const All: Story = {
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RegisterForm</h2>
       <div class="badges">
-        <label for="c-10-forms-registerform-props" class="badge ok as-toggle">4 prop types</label>
-        <label for="c-10-forms-registerform-info" class="badge info as-toggle">1 info</label>
-        <label for="c-10-forms-registerform-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-11-forms-registerform-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-11-forms-registerform-info" class="badge info as-toggle">1 info</label>
+        <label for="c-11-forms-registerform-stories" class="badge ok as-toggle">4 stories</label>
         
       </div>
     </div>
@@ -1991,10 +2091,10 @@ export const All: Story = {
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-10-forms-registerform-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-10-forms-registerform-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-11-forms-registerform-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-11-forms-registerform-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-10-forms-registerform-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-11-forms-registerform-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2097,9 +2197,9 @@ step: &#39;generate&#39; | &#39;registering&#39; | &#39;done&#39;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SWUpdateToast</h2>
       <div class="badges">
-        <label for="c-11-app-swupdatetoast-props" class="badge ok as-toggle">3 prop types</label>
-        <label for="c-11-app-swupdatetoast-info" class="badge info as-toggle">1 info</label>
-        <label for="c-11-app-swupdatetoast-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-12-app-swupdatetoast-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-12-app-swupdatetoast-info" class="badge info as-toggle">1 info</label>
+        <label for="c-12-app-swupdatetoast-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -2111,10 +2211,10 @@ step: &#39;generate&#39; | &#39;registering&#39; | &#39;done&#39;</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-11-app-swupdatetoast-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-11-app-swupdatetoast-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-12-app-swupdatetoast-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-12-app-swupdatetoast-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-11-app-swupdatetoast-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-12-app-swupdatetoast-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
