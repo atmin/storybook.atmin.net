@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/19 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">17/19 infos</a><span class="filter-pill ok" aria-disabled="true">78 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/21 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">19/21 infos</a><span class="filter-pill ok" aria-disabled="true">96 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1133,9 +1133,9 @@ strength: PasswordStrength</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatMessage</h2>
       <div class="badges">
-        <label for="c-3-chat-chatmessage-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-3-chat-chatmessage-props" class="badge ok as-toggle">13 prop types</label>
         <label for="c-3-chat-chatmessage-info" class="badge info as-toggle">1 info</label>
-        <label for="c-3-chat-chatmessage-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-3-chat-chatmessage-stories" class="badge ok as-toggle">14 stories</label>
         
       </div>
     </div>
@@ -1167,15 +1167,29 @@ strength: PasswordStrength</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">6 prop types</span>
+              <span class="badge ok">13 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatMessage.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>media?: MediaFile
+            <pre><code>deleted?: boolean
+
+editedAt?: Date
+
+editing?: boolean
+
+media?: MediaFile
 
 mediaState?: MediaState
 
+onCancelEdit?: () =&gt; void
+
+onDelete?: () =&gt; void
+
 onMediaRetry?: (url: string) =&gt; void
+
+onSaveEdit?: (newBody: string) =&gt; void
+
+onStartEdit?: () =&gt; void
 
 sent: boolean
 
@@ -1313,6 +1327,100 @@ timestamp: Date</code></pre>
     media={fakeMedia}
     mediaState={state({ status: &#39;loading&#39;, blobUrl: null, mime: null })}
     onMediaRetry={noop} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Edited</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Edited = () =&gt; &lt;ChatMessage
+    text=&quot;Hello Bob (fixed)&quot;
+    timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
+    sent
+    editedAt={new Date(&#39;2025-01-15T14:31:00&#39;)}
+    onStartEdit={noop}
+    onCancelEdit={noop}
+    onSaveEdit={noop}
+    onDelete={noop} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Edited Recently</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const EditedRecently = () =&gt; &lt;ChatMessage
+    text=&quot;typo fixed moments later&quot;
+    timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
+    sent
+    editedAt={new Date(&#39;2025-01-15T14:30:20&#39;)}
+    onStartEdit={noop}
+    onCancelEdit={noop}
+    onSaveEdit={noop}
+    onDelete={noop} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Edited Hours Later</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const EditedHoursLater = () =&gt; &lt;ChatMessage
+    text=&quot;fixed it a few hours on&quot;
+    timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
+    sent
+    editedAt={new Date(&#39;2025-01-15T19:30:00&#39;)}
+    onStartEdit={noop}
+    onCancelEdit={noop}
+    onSaveEdit={noop}
+    onDelete={noop} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Edited Long After</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const EditedLongAfter = () =&gt; &lt;ChatMessage
+    text=&quot;rewriting history&quot;
+    timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
+    sent
+    editedAt={new Date(&#39;2025-02-05T09:00:00&#39;)}
+    onStartEdit={noop}
+    onCancelEdit={noop}
+    onSaveEdit={noop}
+    onDelete={noop} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Deleted</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Deleted = () =&gt; &lt;ChatMessage text=&quot;&quot; timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)} sent deleted /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Editing Inline</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const EditingInline = () =&gt; &lt;ChatMessage
+    text=&quot;the current body, pre-filled&quot;
+    timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
+    sent
+    editing
+    onStartEdit={noop}
+    onCancelEdit={noop}
+    onSaveEdit={noop}
+    onDelete={noop} /&gt;;</code></pre>
             </div>
         </div>
     
@@ -1504,9 +1612,9 @@ userId: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatView</h2>
       <div class="badges">
-        <label for="c-5-chat-chatview-props" class="badge ok as-toggle">15 prop types</label>
+        <label for="c-5-chat-chatview-props" class="badge ok as-toggle">19 prop types</label>
         <label for="c-5-chat-chatview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-5-chat-chatview-stories" class="badge ok as-toggle">7 stories</label>
+        <label for="c-5-chat-chatview-stories" class="badge ok as-toggle">10 stories</label>
         
       </div>
     </div>
@@ -1538,7 +1646,7 @@ userId: string</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">15 prop types</span>
+              <span class="badge ok">19 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatView.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -1548,6 +1656,8 @@ encryptionReady: boolean
 
 handle: string
 
+inputValue: string
+
 isSaved: boolean
 
 loading: boolean
@@ -1555,6 +1665,10 @@ loading: boolean
 mediaStates?: Record&lt;string, MediaState&gt; = {}
 
 messages: Message[]
+
+onDeleteMessage?: (id: string, mediaUrl?: string) =&gt; void
+
+onEditMessage?: (id: string, newBody: string) =&gt; void
 
 onJumpToBottom?: () =&gt; void
 
@@ -1569,6 +1683,8 @@ onSendMedia?: (file: File) =&gt; void
 scrollContainerRef?: (el: HTMLDivElement | null) =&gt; void
 
 sending: boolean
+
+setInputValue: (v: string) =&gt; void
 
 showJumpToBottom?: boolean = false</code></pre>
           </div>
@@ -1597,6 +1713,8 @@ showJumpToBottom?: boolean = false</code></pre>
     onSend={fn()}
     encryptionReady
     online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1615,9 +1733,31 @@ showJumpToBottom?: boolean = false</code></pre>
     onSend={fn()}
     encryptionReady
     online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
     chatTitle=&quot;Saved Messages&quot;
     isSaved
     handle=&quot;saved&quot;
+    messages={[]}
+    loading={false}
+    sending={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Draft</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Draft = () =&gt; &lt;ChatView
+    onSend={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;half-typed message…&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
     messages={[]}
     loading={false}
     sending={false} /&gt;;</code></pre>
@@ -1633,6 +1773,8 @@ showJumpToBottom?: boolean = false</code></pre>
     onSend={fn()}
     encryptionReady
     online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1651,6 +1793,8 @@ showJumpToBottom?: boolean = false</code></pre>
     onSend={fn()}
     encryptionReady
     online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1688,6 +1832,8 @@ showJumpToBottom?: boolean = false</code></pre>
     onSend={fn()}
     encryptionReady
     online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1713,6 +1859,8 @@ showJumpToBottom?: boolean = false</code></pre>
     onSend={fn()}
     encryptionReady
     online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1746,6 +1894,8 @@ showJumpToBottom?: boolean = false</code></pre>
     onSend={fn()}
     encryptionReady
     online={false}
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
     chatTitle=&quot;copper-falcon&quot;
     isSaved={false}
     handle=&quot;copper-falcon&quot;
@@ -1759,6 +1909,90 @@ showJumpToBottom?: boolean = false</code></pre>
     ]}
     loading={false}
     sending={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Amendments</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithAmendments = () =&gt; &lt;ChatView
+    onSend={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;Hello Bob (edited)&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:30:00Z&#39;),
+            sent: true,
+            editedAt: new Date(&#39;2024-01-15T10:31:00Z&#39;),
+        },
+        {
+            id: &#39;2&#39;,
+            text: &#39;&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:32:00Z&#39;),
+            sent: true,
+            deleted: true,
+        },
+        {
+            id: &#39;3&#39;,
+            text: &#39;A normal received message&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:33:00Z&#39;),
+            sent: false,
+        },
+    ]}
+    loading={false}
+    sending={false}
+    onEditMessage={fn()}
+    onDeleteMessage={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With One Message Editing</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithOneMessageEditing = () =&gt; &lt;ChatView
+    onSend={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;First message&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:30:00Z&#39;),
+            sent: true,
+        },
+        {
+            id: &#39;2&#39;,
+            text: &#39;This one is being edited&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:31:00Z&#39;),
+            sent: true,
+        },
+        {
+            id: &#39;3&#39;,
+            text: &#39;Third message&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:32:00Z&#39;),
+            sent: true,
+        },
+    ]}
+    loading={false}
+    sending={false}
+    onEditMessage={fn()}
+    onDeleteMessage={fn()} /&gt;;</code></pre>
             </div>
         </div>
     
@@ -2155,14 +2389,113 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
   no-story-error
   no-doc-error"
   role="listitem"
+  aria-label="MessageActions">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> MessageActions</h2>
+      <div class="badges">
+        <label for="c-10-chat-messageactions-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-10-chat-messageactions-info" class="badge info as-toggle">1 info</label>
+        <label for="c-10-chat-messageactions-stories" class="badge ok as-toggle">3 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/MessageActions.stories.tsx">chat-messageactions · ./src/components/MessageActions.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="c-10-chat-messageactions-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-10-chat-messageactions-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-10-chat-messageactions-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src/components/MessageActions.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>onDelete: () =&gt; void
+
+onEdit?: () =&gt; void</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { MessageActions } from "atmin-web";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Editable</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Editable = () =&gt; &lt;MessageActions onEdit={fn()} onDelete={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Delete Only</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const DeleteOnly = () =&gt; &lt;MessageActions onEdit={undefined} onDelete={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Confirming Delete</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const ConfirmingDelete = () =&gt; &lt;MessageActions onEdit={fn()} onDelete={fn()} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
   aria-label="OfflineIndicator">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> OfflineIndicator</h2>
       <div class="badges">
         
-        <label for="c-10-app-offlineindicator-info" class="badge info as-toggle">1 info</label>
-        <label for="c-10-app-offlineindicator-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-11-app-offlineindicator-info" class="badge info as-toggle">1 info</label>
+        <label for="c-11-app-offlineindicator-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -2174,8 +2507,8 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-10-app-offlineindicator-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-10-app-offlineindicator-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-11-app-offlineindicator-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-11-app-offlineindicator-stories" class="tg tg-stories" type="checkbox" hidden />
   
   
 
@@ -2228,9 +2561,9 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> PasswordField</h2>
       <div class="badges">
-        <label for="c-11-forms-passwordfield-props" class="badge ok as-toggle">5 prop types</label>
-        <label for="c-11-forms-passwordfield-info" class="badge info as-toggle">1 info</label>
-        <label for="c-11-forms-passwordfield-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-12-forms-passwordfield-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-12-forms-passwordfield-info" class="badge info as-toggle">1 info</label>
+        <label for="c-12-forms-passwordfield-stories" class="badge ok as-toggle">5 stories</label>
         
       </div>
     </div>
@@ -2242,10 +2575,10 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-11-forms-passwordfield-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-11-forms-passwordfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-12-forms-passwordfield-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-12-forms-passwordfield-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-11-forms-passwordfield-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-12-forms-passwordfield-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2368,9 +2701,9 @@ password: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> PasswordInput</h2>
       <div class="badges">
-        <label for="c-12-forms-passwordinput-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-13-forms-passwordinput-props" class="badge ok as-toggle">7 prop types</label>
         
-        <label for="c-12-forms-passwordinput-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-13-forms-passwordinput-stories" class="badge ok as-toggle">4 stories</label>
         
       </div>
     </div>
@@ -2383,9 +2716,9 @@ password: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-12-forms-passwordinput-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-13-forms-passwordinput-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-12-forms-passwordinput-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-13-forms-passwordinput-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2483,9 +2816,9 @@ value: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> PasswordStrengthMeter</h2>
       <div class="badges">
-        <label for="c-13-forms-passwordstrengthmeter-props" class="badge ok as-toggle">4 prop types</label>
-        <label for="c-13-forms-passwordstrengthmeter-info" class="badge info as-toggle">1 info</label>
-        <label for="c-13-forms-passwordstrengthmeter-stories" class="badge ok as-toggle">7 stories</label>
+        <label for="c-14-forms-passwordstrengthmeter-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-14-forms-passwordstrengthmeter-info" class="badge info as-toggle">1 info</label>
+        <label for="c-14-forms-passwordstrengthmeter-stories" class="badge ok as-toggle">7 stories</label>
         
       </div>
     </div>
@@ -2497,10 +2830,10 @@ value: string</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-13-forms-passwordstrengthmeter-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-13-forms-passwordstrengthmeter-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-14-forms-passwordstrengthmeter-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-14-forms-passwordstrengthmeter-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-13-forms-passwordstrengthmeter-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-14-forms-passwordstrengthmeter-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2622,9 +2955,9 @@ score: 0 | 1 | 2 | 3 | 4</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ProfileSettings</h2>
       <div class="badges">
-        <label for="c-14-settings-profilesettings-props" class="badge ok as-toggle">4 prop types</label>
-        <label for="c-14-settings-profilesettings-info" class="badge info as-toggle">1 info</label>
-        <label for="c-14-settings-profilesettings-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-15-settings-profilesettings-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-15-settings-profilesettings-info" class="badge info as-toggle">1 info</label>
+        <label for="c-15-settings-profilesettings-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -2636,10 +2969,10 @@ score: 0 | 1 | 2 | 3 | 4</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-14-settings-profilesettings-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-14-settings-profilesettings-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-15-settings-profilesettings-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-15-settings-profilesettings-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-14-settings-profilesettings-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-15-settings-profilesettings-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2719,9 +3052,9 @@ token: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-err"></span> PWAIcons</h2>
       <div class="badges">
-        <label for="c-15-assets-pwa-icons-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-15-assets-pwa-icons-info" class="badge info as-toggle">2 infos</label>
-        <label for="c-15-assets-pwa-icons-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-16-assets-pwa-icons-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-16-assets-pwa-icons-info" class="badge info as-toggle">2 infos</label>
+        <label for="c-16-assets-pwa-icons-stories" class="badge ok as-toggle">1 story</label>
         
       </div>
     </div>
@@ -2732,9 +3065,9 @@ token: string</code></pre>
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-15-assets-pwa-icons-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-15-assets-pwa-icons-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-15-assets-pwa-icons-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-16-assets-pwa-icons-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-16-assets-pwa-icons-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-16-assets-pwa-icons-stories" class="tg tg-stories" type="checkbox" hidden />
   
   
 
@@ -2893,9 +3226,9 @@ export const All: Story = {
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RegisterForm</h2>
       <div class="badges">
-        <label for="c-16-forms-registerform-props" class="badge ok as-toggle">14 prop types</label>
-        <label for="c-16-forms-registerform-info" class="badge info as-toggle">1 info</label>
-        <label for="c-16-forms-registerform-stories" class="badge ok as-toggle">12 stories</label>
+        <label for="c-17-forms-registerform-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-17-forms-registerform-info" class="badge info as-toggle">1 info</label>
+        <label for="c-17-forms-registerform-stories" class="badge ok as-toggle">12 stories</label>
         
       </div>
     </div>
@@ -2907,10 +3240,10 @@ export const All: Story = {
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-16-forms-registerform-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-16-forms-registerform-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-17-forms-registerform-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-17-forms-registerform-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-16-forms-registerform-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-17-forms-registerform-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -3270,9 +3603,9 @@ strength: PasswordStrength</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RestoreWarningToast</h2>
       <div class="badges">
-        <label for="c-17-app-restorewarningtoast-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-18-app-restorewarningtoast-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-17-app-restorewarningtoast-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-18-app-restorewarningtoast-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -3285,9 +3618,9 @@ strength: PasswordStrength</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-17-app-restorewarningtoast-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-18-app-restorewarningtoast-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-17-app-restorewarningtoast-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-18-app-restorewarningtoast-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -3351,14 +3684,140 @@ onDismiss: () =&gt; void</code></pre>
   no-story-error
   no-doc-error"
   role="listitem"
+  aria-label="StorageIndicator">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> StorageIndicator</h2>
+      <div class="badges">
+        <label for="c-19-settings-storageindicator-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-19-settings-storageindicator-info" class="badge info as-toggle">1 info</label>
+        <label for="c-19-settings-storageindicator-stories" class="badge ok as-toggle">6 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/StorageIndicator.stories.tsx">settings-storageindicator · ./src/components/StorageIndicator.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="c-19-settings-storageindicator-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-19-settings-storageindicator-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-19-settings-storageindicator-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src/components/StorageIndicator.tsx::StorageIndicator</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>loading: boolean
+
+usage: StorageUsage | null</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { StorageIndicator } from "atmin-web";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Loading</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Loading = () =&gt; &lt;StorageIndicator loading usage={null} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Empty Usage</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const EmptyUsage = () =&gt; &lt;StorageIndicator loading={false} usage={usage(0, 0)} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Sub Megabyte</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SubMegabyte = () =&gt; &lt;StorageIndicator loading={false} usage={usage(320 * 1024, 1)} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Typical</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Typical = () =&gt; &lt;StorageIndicator loading={false} usage={usage(320 * 1024 * 1024)} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Warning</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Warning = () =&gt; &lt;StorageIndicator loading={false} usage={usage(Math.round(0.95 * GIB))} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">At Quota</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AtQuota = () =&gt; &lt;StorageIndicator loading={false} usage={usage(GIB)} /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  has-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
   aria-label="SWUpdateToast">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SWUpdateToast</h2>
       <div class="badges">
-        <label for="c-18-app-swupdatetoast-props" class="badge ok as-toggle">3 prop types</label>
-        <label for="c-18-app-swupdatetoast-info" class="badge info as-toggle">1 info</label>
-        <label for="c-18-app-swupdatetoast-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-20-app-swupdatetoast-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-20-app-swupdatetoast-info" class="badge info as-toggle">1 info</label>
+        <label for="c-20-app-swupdatetoast-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -3370,10 +3829,10 @@ onDismiss: () =&gt; void</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-18-app-swupdatetoast-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-18-app-swupdatetoast-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-20-app-swupdatetoast-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-20-app-swupdatetoast-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-18-app-swupdatetoast-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-20-app-swupdatetoast-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
