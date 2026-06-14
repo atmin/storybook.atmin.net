@@ -582,7 +582,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.6s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -3441,7 +3441,7 @@ export const All: Story = {
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RegisterForm</h2>
       <div class="badges">
-        <label for="c-18-forms-registerform-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-18-forms-registerform-props" class="badge ok as-toggle">17 prop types</label>
         <label for="c-18-forms-registerform-info" class="badge info as-toggle">1 info</label>
         <label for="c-18-forms-registerform-stories" class="badge ok as-toggle">12 stories</label>
         
@@ -3475,7 +3475,7 @@ export const All: Story = {
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">14 prop types</span>
+              <span class="badge ok">17 prop types</span>
             </div>
             <pre><code>Component: src/components/RegisterForm.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -3503,7 +3503,17 @@ onSurpriseMe: () =&gt; void
 
 password: string
 
-step: &#39;enter&#39; | &#39;deriving&#39; | &#39;registering&#39; | &#39;done&#39;
+powHashes: number
+
+powStatus: &#39;solving&#39; | &#39;ready&#39; | &#39;failed&#39;
+
+provingMs: number
+
+step: | &#39;enter&#39;
+| &#39;deriving&#39;
+| &#39;proving&#39;
+| &#39;registering&#39;
+| &#39;done&#39;
 
 strength: PasswordStrength</code></pre>
           </div>
@@ -3537,6 +3547,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={idle}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;&quot;
     password=&quot;&quot;
@@ -3560,6 +3573,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={available}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;alice-test&quot;
     password=&quot;&quot;
@@ -3583,6 +3599,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={taken}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;alice&quot;
     password=&quot;&quot;
@@ -3606,6 +3625,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={invalid}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;Alice&quot;
     password=&quot;&quot;
@@ -3629,6 +3651,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={released}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;recent-user&quot;
     password=&quot;&quot;
@@ -3652,6 +3677,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={checking}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;alice-test&quot;
     password=&quot;&quot;
@@ -3680,6 +3708,9 @@ strength: PasswordStrength</code></pre>
         loading: false,
     }}
     availability={available}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;alice-test&quot;
     password=&quot;password&quot;
@@ -3703,6 +3734,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={{ score: 4, feedback: [], pwned: false, loading: false }}
     availability={available}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;alice-test&quot;
     password=&quot;Tr0ub4dour&amp;3xpl0re!Quokka&quot;
@@ -3726,6 +3760,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={idle}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;deriving&quot;
     handle=&quot;alice-test&quot;
     password=&quot;Tr0ub4dour&amp;3xpl0re!Quokka&quot;
@@ -3749,6 +3786,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={idle}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;registering&quot;
     handle=&quot;alice-test&quot;
     password=&quot;&quot;
@@ -3772,6 +3812,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={noStrength}
     availability={idle}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;done&quot;
     handle=&quot;alice-test&quot;
     password=&quot;&quot;
@@ -3795,6 +3838,9 @@ strength: PasswordStrength</code></pre>
     onRegister={fn()}
     strength={{ score: 4, feedback: [], pwned: false, loading: false }}
     availability={taken}
+    powStatus=&quot;ready&quot;
+    provingMs={0}
+    powHashes={0}
     step=&quot;enter&quot;
     handle=&quot;alice-test&quot;
     password=&quot;Tr0ub4dour&amp;3xpl0re!Quokka&quot;
