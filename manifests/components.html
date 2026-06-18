@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/24 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">22/24 infos</a><span class="filter-pill ok" aria-disabled="true">115 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/24 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">22/24 infos</a><span class="filter-pill ok" aria-disabled="true">118 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1133,7 +1133,7 @@ strength: PasswordStrength</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatMessage</h2>
       <div class="badges">
-        <label for="c-3-chat-chatmessage-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-3-chat-chatmessage-props" class="badge ok as-toggle">15 prop types</label>
         <label for="c-3-chat-chatmessage-info" class="badge info as-toggle">1 info</label>
         <label for="c-3-chat-chatmessage-stories" class="badge ok as-toggle">14 stories</label>
         
@@ -1167,7 +1167,7 @@ strength: PasswordStrength</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">14 prop types</span>
+              <span class="badge ok">15 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatMessage.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -1178,6 +1178,8 @@ editedAt?: Date
 editing?: boolean
 
 media?: MediaFile
+
+mediaFullState?: MediaState
 
 mediaObserve?: (url: string, el: HTMLElement | null) =&gt; void
 
@@ -1670,7 +1672,7 @@ mediaStates?: Record&lt;string, MediaState&gt; = {}
 
 messages: Message[]
 
-onDeleteMessage?: (id: string, mediaUrl?: string) =&gt; void
+onDeleteMessage?: (id: string, mediaUrls?: string[]) =&gt; void
 
 onEditMessage?: (id: string, newBody: string) =&gt; void
 
@@ -2613,9 +2615,9 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> MediaAttachment</h2>
       <div class="badges">
-        <label for="c-11-chat-mediaattachment-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-11-chat-mediaattachment-props" class="badge ok as-toggle">10 prop types</label>
         <label for="c-11-chat-mediaattachment-info" class="badge info as-toggle">1 info</label>
-        <label for="c-11-chat-mediaattachment-stories" class="badge ok as-toggle">11 stories</label>
+        <label for="c-11-chat-mediaattachment-stories" class="badge ok as-toggle">14 stories</label>
         
       </div>
     </div>
@@ -2647,17 +2649,23 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">7 prop types</span>
+              <span class="badge ok">10 prop types</span>
             </div>
             <pre><code>Component: src/components/MediaAttachment.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>height?: number
+            <pre><code>fullState?: MediaState
+
+hasPreview?: boolean = false
+
+height?: number
 
 name: string
 
 observe?: (el: HTMLElement | null) =&gt; void
 
 onRequest: () =&gt; void
+
+onRequestFull?: () =&gt; void
 
 size: number
 
@@ -2752,6 +2760,72 @@ width?: number</code></pre>
         status: &#39;ready&#39;,
         blobUrl: PNG_DATA_URL,
         mime: &#39;image/png&#39;,
+    })} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Preview Tappable</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const PreviewTappable = () =&gt; &lt;MediaAttachment
+    onRequest={() =&gt; {}}
+    name=&quot;sunset.jpg&quot;
+    size={482_113}
+    width={2048}
+    height={1536}
+    hasPreview
+    state={state({
+        status: &#39;ready&#39;,
+        blobUrl: PNG_DATA_URL,
+        mime: &#39;image/jpeg&#39;,
+    })} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Full Loading Over Preview</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const FullLoadingOverPreview = () =&gt; &lt;MediaAttachment
+    onRequest={() =&gt; {}}
+    name=&quot;sunset.jpg&quot;
+    size={482_113}
+    width={2048}
+    height={1536}
+    hasPreview
+    state={state({
+        status: &#39;ready&#39;,
+        blobUrl: PNG_DATA_URL,
+        mime: &#39;image/jpeg&#39;,
+    })}
+    fullState={state({ status: &#39;loading&#39;, blobUrl: null, mime: null })} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Full Shown Over Preview</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const FullShownOverPreview = () =&gt; &lt;MediaAttachment
+    onRequest={() =&gt; {}}
+    name=&quot;sunset.jpg&quot;
+    size={482_113}
+    width={2048}
+    height={1536}
+    hasPreview
+    state={state({
+        status: &#39;ready&#39;,
+        blobUrl: PNG_DATA_URL,
+        mime: &#39;image/jpeg&#39;,
+    })}
+    fullState={state({
+        status: &#39;ready&#39;,
+        blobUrl: PNG_DATA_URL,
+        mime: &#39;image/jpeg&#39;,
     })} /&gt;;</code></pre>
             </div>
             <div class="note ok">
