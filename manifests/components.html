@@ -576,13 +576,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/26 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">23/26 infos</a><span class="filter-pill ok" aria-disabled="true">135 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/26 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">23/26 infos</a><span class="filter-pill ok" aria-disabled="true">137 stories ok</span></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.8s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1154,9 +1154,9 @@ strength: PasswordStrength</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatMessage</h2>
       <div class="badges">
-        <label for="c-3-chat-chatmessage-props" class="badge ok as-toggle">15 prop types</label>
+        <label for="c-3-chat-chatmessage-props" class="badge ok as-toggle">11 prop types</label>
         <label for="c-3-chat-chatmessage-info" class="badge info as-toggle">1 info</label>
-        <label for="c-3-chat-chatmessage-stories" class="badge ok as-toggle">14 stories</label>
+        <label for="c-3-chat-chatmessage-stories" class="badge ok as-toggle">13 stories</label>
         
       </div>
     </div>
@@ -1188,15 +1188,13 @@ strength: PasswordStrength</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">15 prop types</span>
+              <span class="badge ok">11 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatMessage.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>deleted?: boolean
 
 editedAt?: Date
-
-editing?: boolean
 
 media?: MediaFile
 
@@ -1206,15 +1204,9 @@ mediaObserve?: (url: string, el: HTMLElement | null) =&gt; void
 
 mediaState?: MediaState
 
-onCancelEdit?: () =&gt; void
-
-onDelete?: () =&gt; void
-
 onMediaRequest?: (url: string) =&gt; void
 
-onSaveEdit?: (newBody: string) =&gt; void
-
-onStartEdit?: () =&gt; void
+onRequestActions?: () =&gt; void
 
 sent: boolean
 
@@ -1365,10 +1357,7 @@ timestamp: Date</code></pre>
     timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
     sent
     editedAt={new Date(&#39;2025-01-15T14:31:00&#39;)}
-    onStartEdit={noop}
-    onCancelEdit={noop}
-    onSaveEdit={noop}
-    onDelete={noop} /&gt;;</code></pre>
+    onRequestActions={noop} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1382,10 +1371,7 @@ timestamp: Date</code></pre>
     timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
     sent
     editedAt={new Date(&#39;2025-01-15T14:30:20&#39;)}
-    onStartEdit={noop}
-    onCancelEdit={noop}
-    onSaveEdit={noop}
-    onDelete={noop} /&gt;;</code></pre>
+    onRequestActions={noop} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1399,10 +1385,7 @@ timestamp: Date</code></pre>
     timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
     sent
     editedAt={new Date(&#39;2025-01-15T19:30:00&#39;)}
-    onStartEdit={noop}
-    onCancelEdit={noop}
-    onSaveEdit={noop}
-    onDelete={noop} /&gt;;</code></pre>
+    onRequestActions={noop} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1416,10 +1399,7 @@ timestamp: Date</code></pre>
     timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
     sent
     editedAt={new Date(&#39;2025-02-05T09:00:00&#39;)}
-    onStartEdit={noop}
-    onCancelEdit={noop}
-    onSaveEdit={noop}
-    onDelete={noop} /&gt;;</code></pre>
+    onRequestActions={noop} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1429,23 +1409,6 @@ timestamp: Date</code></pre>
               
               
               <pre><code>const Deleted = () =&gt; &lt;ChatMessage text=&quot;&quot; timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)} sent deleted /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Editing Inline</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const EditingInline = () =&gt; &lt;ChatMessage
-    text=&quot;the current body, pre-filled&quot;
-    timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
-    sent
-    editing
-    onStartEdit={noop}
-    onCancelEdit={noop}
-    onSaveEdit={noop}
-    onDelete={noop} /&gt;;</code></pre>
             </div>
         </div>
     
@@ -1634,9 +1597,9 @@ userId: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatView</h2>
       <div class="badges">
-        <label for="c-5-chat-chatview-props" class="badge ok as-toggle">24 prop types</label>
+        <label for="c-5-chat-chatview-props" class="badge ok as-toggle">29 prop types</label>
         <label for="c-5-chat-chatview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-5-chat-chatview-stories" class="badge ok as-toggle">17 stories</label>
+        <label for="c-5-chat-chatview-stories" class="badge ok as-toggle">20 stories</label>
         
       </div>
     </div>
@@ -1668,11 +1631,15 @@ userId: string</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">24 prop types</span>
+              <span class="badge ok">29 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatView.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>chatTitle: string
+
+editingId?: string | null = null
+
+editValue?: string = &#39;&#39;
 
 encryptionReady: boolean
 
@@ -1697,11 +1664,15 @@ onAttach?: (file: File) =&gt; void
  */
 onBack: () =&gt; void
 
+onCancelEdit?: () =&gt; void
+
 onClearAttachment?: () =&gt; void
+
+onCommitEdit?: () =&gt; void
 
 onDeleteMessage?: (id: string, mediaUrls?: string[]) =&gt; void
 
-onEditMessage?: (id: string, newBody: string) =&gt; void
+onEditValueChange?: (v: string) =&gt; void
 
 onJumpToBottom?: () =&gt; void
 
@@ -1712,6 +1683,8 @@ onMediaRequest?: (url: string) =&gt; void = () =&gt; {}
 onSend: (text: string) =&gt; void
 
 onSendMedia?: (file: File, caption?: string) =&gt; void
+
+onStartEdit?: (id: string, body: string) =&gt; void
 
 pending?: PendingAttachment | null
 
@@ -1891,6 +1864,89 @@ showJumpToBottom?: boolean = false</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
+                <span class="ex-name">Wide Unbreakable Message</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WideUnbreakableMessage = () =&gt; &lt;ChatView
+    onSend={fn()}
+    onBack={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;ok&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:30:00Z&#39;),
+            sent: true,
+        },
+        {
+            id: &#39;2&#39;,
+            text: &#39;level=info msg=request request_id=01KVJKJQGEF90SE5PVF11AX33S method=GET path=/v1/store/object status=200 dur_ms=3 ip=127.0.0.1 user_id=01KVJJAH971RXNVEMHJ11F69BF&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:31:00Z&#39;),
+            sent: true,
+        },
+    ]}
+    loading={false}
+    sending={false}
+    onStartEdit={fn()}
+    onDeleteMessage={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Image Attachment</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithImageAttachment = () =&gt; &lt;ChatView
+    onSend={fn()}
+    onBack={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;check this out&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:30:00Z&#39;),
+            sent: true,
+            media: {
+                url: &#39;media/01STORY/wide&#39;,
+                key: new Uint8Array(32),
+                iv: new Uint8Array(12),
+                name: &#39;wide.jpg&#39;,
+                size: 482_113,
+                width: 2048,
+                height: 1536,
+            },
+        },
+    ]}
+    loading={false}
+    sending={false}
+    mediaStates={{
+        &#39;media/01STORY/wide&#39;: {
+            status: &#39;idle&#39;,
+            blobUrl: null,
+            mime: null,
+        },
+    }}
+    onMediaRequest={fn()}
+    onStartEdit={fn()}
+    onDeleteMessage={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
                 <span class="ex-name">Sending</span>
                 <span class="badge ok">story ok</span>
               </div>
@@ -2022,7 +2078,7 @@ showJumpToBottom?: boolean = false</code></pre>
     ]}
     loading={false}
     sending={false}
-    onEditMessage={fn()}
+    onStartEdit={fn()}
     onDeleteMessage={fn()} /&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -2134,12 +2190,12 @@ showJumpToBottom?: boolean = false</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">With One Message Editing</span>
+                <span class="ex-name">Editing In Composer</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const WithOneMessageEditing = () =&gt; &lt;ChatView
+              <pre><code>const EditingInComposer = () =&gt; &lt;ChatView
     onSend={fn()}
     onBack={fn()}
     encryptionReady
@@ -2171,7 +2227,42 @@ showJumpToBottom?: boolean = false</code></pre>
     ]}
     loading={false}
     sending={false}
-    onEditMessage={fn()}
+    editingId=&quot;2&quot;
+    editValue=&quot;This one is being edited&quot;
+    onStartEdit={fn()}
+    onEditValueChange={fn()}
+    onCancelEdit={fn()}
+    onCommitEdit={fn()}
+    onDeleteMessage={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Action Sheet</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithActionSheet = () =&gt; &lt;ChatView
+    onSend={fn()}
+    onBack={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;Tap the ⋯ to edit or delete me&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:30:00Z&#39;),
+            sent: true,
+        },
+    ]}
+    loading={false}
+    sending={false}
+    onStartEdit={fn()}
     onDeleteMessage={fn()} /&gt;;</code></pre>
             </div>
         </div>
@@ -3322,7 +3413,7 @@ width?: number</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> MessageActions</h2>
       <div class="badges">
-        <label for="c-13-chat-messageactions-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-13-chat-messageactions-props" class="badge ok as-toggle">5 prop types</label>
         <label for="c-13-chat-messageactions-info" class="badge info as-toggle">1 info</label>
         <label for="c-13-chat-messageactions-stories" class="badge ok as-toggle">3 stories</label>
         
@@ -3356,13 +3447,19 @@ width?: number</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">2 prop types</span>
+              <span class="badge ok">5 prop types</span>
             </div>
             <pre><code>Component: src/components/MessageActions.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>onDelete: () =&gt; void
+            <pre><code>canEdit?: boolean
 
-onEdit?: () =&gt; void</code></pre>
+onClose: () =&gt; void
+
+onDelete: () =&gt; void
+
+onEdit?: () =&gt; void
+
+opened: boolean</code></pre>
           </div>
         </div>
     
@@ -3385,7 +3482,7 @@ onEdit?: () =&gt; void</code></pre>
               </div>
               
               
-              <pre><code>const Editable = () =&gt; &lt;MessageActions onEdit={fn()} onDelete={fn()} /&gt;;</code></pre>
+              <pre><code>const Editable = () =&gt; &lt;MessageActions opened canEdit onEdit={fn()} onDelete={fn()} onClose={fn()} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -3394,7 +3491,7 @@ onEdit?: () =&gt; void</code></pre>
               </div>
               
               
-              <pre><code>const DeleteOnly = () =&gt; &lt;MessageActions onEdit={undefined} onDelete={fn()} /&gt;;</code></pre>
+              <pre><code>const DeleteOnly = () =&gt; &lt;MessageActions opened canEdit={false} onEdit={fn()} onDelete={fn()} onClose={fn()} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -3403,7 +3500,7 @@ onEdit?: () =&gt; void</code></pre>
               </div>
               
               
-              <pre><code>const ConfirmingDelete = () =&gt; &lt;MessageActions onEdit={fn()} onDelete={fn()} /&gt;;</code></pre>
+              <pre><code>const ConfirmingDelete = () =&gt; &lt;MessageActions opened canEdit onEdit={fn()} onDelete={fn()} onClose={fn()} /&gt;;</code></pre>
             </div>
         </div>
     
