@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/26 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">23/26 infos</a><span class="filter-pill ok" aria-disabled="true">137 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/26 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">23/26 infos</a><span class="filter-pill ok" aria-disabled="true">138 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1156,7 +1156,7 @@ strength: PasswordStrength</code></pre>
       <div class="badges">
         <label for="c-3-chat-chatmessage-props" class="badge ok as-toggle">11 prop types</label>
         <label for="c-3-chat-chatmessage-info" class="badge info as-toggle">1 info</label>
-        <label for="c-3-chat-chatmessage-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-3-chat-chatmessage-stories" class="badge ok as-toggle">14 stories</label>
         
       </div>
     </div>
@@ -1257,6 +1257,22 @@ timestamp: Date</code></pre>
               
               
               <pre><code>const NoTimestamp = () =&gt; &lt;ChatMessage text=&quot;Message with no timestamp&quot; timestamp={new Date(0)} sent={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Long Message</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const LongMessage = () =&gt; &lt;ChatMessage
+    text={Array.from(
+        { length: 18 },
+        (_, i) =&gt;
+            `Line ${i + 1}: this is a fairly long paragraph of text that keeps going so the whole message takes a lot of vertical space.`,
+    ).join(&#39;\n&#39;)}
+    timestamp={new Date(&#39;2025-01-15T14:30:00&#39;)}
+    sent={false} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1525,19 +1541,40 @@ userId: string</code></pre>
     conversations={[
         {
             conversationId: &#39;dm:01USER123:01OTHER456&#39;,
-            lastMessageText: &#39;See you tomorrow!&#39;,
+            // Typed text envelope (the wire format) — the preview shows the
+            // body, not the raw JSON.
+            lastMessageText: JSON.stringify({
+                type: &#39;text&#39;,
+                body: &#39;See you tomorrow!&#39;,
+            }),
             lastMessageTimestamp: Date.now() - 1000 * 60 * 5,
             messageCount: 12,
         },
         {
             conversationId: &#39;dm:01USER123:01ALICE789&#39;,
-            lastMessageText: &#39;The encryption looks solid.&#39;,
+            // A media message previews as &quot;&lt;photo&gt;&quot;.
+            lastMessageText: JSON.stringify({
+                type: &#39;media&#39;,
+                body: &#39;sunset.jpg&#39;,
+                file: {
+                    url: &#39;media/01OTHER/x&#39;,
+                    key: &#39;k&#39;,
+                    iv: &#39;i&#39;,
+                    name: &#39;sunset.jpg&#39;,
+                    size: 482_113,
+                    mime: &#39;image/jpeg&#39;,
+                },
+            }),
             lastMessageTimestamp: Date.now() - 1000 * 60 * 60 * 2,
             messageCount: 45,
         },
         {
             conversationId: &#39;self:01USER123&#39;,
-            lastMessageText: &#39;Remember to review the key backup code&#39;,
+            // A long body is clamped to a single line with an ellipsis.
+            lastMessageText: JSON.stringify({
+                type: &#39;text&#39;,
+                body: &#39;Remember to review the key backup code before the audit, and double-check the rotation schedule for next week as well&#39;,
+            }),
             lastMessageTimestamp: Date.now() - 1000 * 60 * 60 * 24,
             messageCount: 7,
         },
