@@ -1,0 +1,1 @@
+function e(r){if(r<1024)return`${r} B`;const n=r/1024;if(n<1024)return`${n.toFixed(0)} KB`;const t=n/1024;if(t<1024)return`${t.toFixed(t<10?1:0)} MB`;const o=t/1024;return`${o.toFixed(o<10?2:1)} GB`}export{e as f};
