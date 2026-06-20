@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/26 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">24/26 infos</a><span class="filter-pill ok" aria-disabled="true">129 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/27 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">24/27 infos</a><span class="filter-pill ok" aria-disabled="true">135 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -2683,7 +2683,7 @@ secretInput: string</code></pre>
       <div class="badges">
         <label for="c-10-pages-landing-props" class="badge ok as-toggle">2 prop types</label>
         <label for="c-10-pages-landing-info" class="badge info as-toggle">1 info</label>
-        <label for="c-10-pages-landing-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-10-pages-landing-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -2744,7 +2744,16 @@ onDismiss?: () =&gt; void = () =&gt; {}</code></pre>
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;LandingPage /&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; &lt;LandingPage onDismiss={fn()} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Account Deleted</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AccountDeleted = () =&gt; &lt;LandingPage onDismiss={fn()} accountDeleted /&gt;;</code></pre>
             </div>
         </div>
     
@@ -2879,7 +2888,7 @@ topBar?: ReactNode</code></pre>
       <div class="badges">
         <label for="c-12-forms-loginform-props" class="badge ok as-toggle">5 prop types</label>
         <label for="c-12-forms-loginform-info" class="badge info as-toggle">1 info</label>
-        <label for="c-12-forms-loginform-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-12-forms-loginform-stories" class="badge ok as-toggle">5 stories</label>
         
       </div>
     </div>
@@ -2946,7 +2955,7 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;LoginForm onLogin={fn()} loading={false} error=&quot;&quot; /&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; &lt;LoginForm onLogin={fn()} onDismissNotice={fn()} loading={false} error=&quot;&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -2955,7 +2964,7 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
               </div>
               
               
-              <pre><code>const Loading = () =&gt; &lt;LoginForm onLogin={fn()} loading error=&quot;&quot; /&gt;;</code></pre>
+              <pre><code>const Loading = () =&gt; &lt;LoginForm onLogin={fn()} onDismissNotice={fn()} loading error=&quot;&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -2966,6 +2975,7 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
               
               <pre><code>const WithError = () =&gt; &lt;LoginForm
     onLogin={fn()}
+    onDismissNotice={fn()}
     loading={false}
     error=&quot;Incorrect password. Please try again.&quot; /&gt;;</code></pre>
             </div>
@@ -2978,10 +2988,24 @@ onLogin: (handle: string, secret: string) =&gt; void</code></pre>
               
               <pre><code>const RotatedElsewhere = () =&gt; &lt;LoginForm
     onLogin={fn()}
+    onDismissNotice={fn()}
     loading={false}
     error=&quot;&quot;
-    notice=&quot;rotated_elsewhere&quot;
-    onDismissNotice={fn()} /&gt;;</code></pre>
+    notice=&quot;rotated_elsewhere&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Account Deleted</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AccountDeleted = () =&gt; &lt;LoginForm
+    onLogin={fn()}
+    onDismissNotice={fn()}
+    loading={false}
+    error=&quot;&quot;
+    notice=&quot;account_deleted&quot; /&gt;;</code></pre>
             </div>
         </div>
     
@@ -3691,11 +3715,7 @@ value: string</code></pre>
               </div>
               
               
-              <pre><code>const Empty = () =&gt; &lt;PasswordInput
-    id=&quot;demo&quot;
-    onChange={fn()}
-    value=&quot;&quot;
-    placeholder=&quot;Password or recovery phrase&quot; /&gt;;</code></pre>
+              <pre><code>const Empty = () =&gt; &lt;PasswordInput id=&quot;demo&quot; onChange={fn()} value=&quot;&quot; placeholder=&quot;Password&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -4240,7 +4260,7 @@ export const All: Story = {
       <div class="badges">
         <label for="c-22-forms-registerform-props" class="badge ok as-toggle">17 prop types</label>
         <label for="c-22-forms-registerform-info" class="badge info as-toggle">1 info</label>
-        <label for="c-22-forms-registerform-stories" class="badge ok as-toggle">12 stories</label>
+        <label for="c-22-forms-registerform-stories" class="badge ok as-toggle">13 stories</label>
         
       </div>
     </div>
@@ -4569,6 +4589,32 @@ strength: PasswordStrength</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
+                <span class="ex-name">Proving</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Proving = () =&gt; &lt;RegisterForm
+    onHandleChange={fn()}
+    onSurpriseMe={fn()}
+    onPasswordChange={fn()}
+    onConfirmChange={fn()}
+    onAcknowledgedChange={fn()}
+    onRegister={fn()}
+    strength={noStrength}
+    availability={idle}
+    powStatus=&quot;ready&quot;
+    provingMs={2400}
+    powHashes={0}
+    step=&quot;proving&quot;
+    handle=&quot;alice-test&quot;
+    password=&quot;Tr0ub4dour&amp;3xpl0re!Quokka&quot;
+    confirm=&quot;Tr0ub4dour&amp;3xpl0re!Quokka&quot;
+    acknowledged
+    error=&quot;&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
                 <span class="ex-name">Registering</span>
                 <span class="badge ok">story ok</span>
               </div>
@@ -4738,6 +4784,106 @@ onDismiss: () =&gt; void</code></pre>
 <article
   class="card 
   no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
+  aria-label="StatusCover">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> StatusCover</h2>
+      <div class="badges">
+        <label for="c-24-feedback-statuscover-props" class="badge ok as-toggle">2 prop types</label>
+        
+        <label for="c-24-feedback-statuscover-stories" class="badge ok as-toggle">3 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/StatusCover.stories.tsx">feedback-statuscover · ./src/components/StatusCover.stories.tsx</div>
+    
+    <div class="hint">Full-width centred cover shown while a long-running on-device crypto step is in progress (Argon2id derivation, key rotation, account teardown). Konsta `Preloader` is the single &quot;work in progress&quot; spinner across the app (ADR-0023 T3) — it replaced the bespoke three-pulsing-dots so every such moment looks the same on iOS and Material.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-24-feedback-statuscover-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-24-feedback-statuscover-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src/components/StatusCover.tsx::default</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Tints the spinner red for destructive operations (account deletion).
+ * Default is the primary-coloured spinner used by every other long-running
+ * crypto step (register / login derive, password change).
+ */
+destructive?: boolean = false
+
+/**
+ * What&#39;s happening — e.g. &quot;Deriving your keys…&quot;.
+ */
+label: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { StatusCover } from "atmin-web";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Deriving</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Deriving = () =&gt; &lt;StatusCover label=&quot;Deriving your keys…&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Rotating</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Rotating = () =&gt; &lt;StatusCover label=&quot;Rotating credentials on the server…&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Destructive</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Destructive = () =&gt; &lt;StatusCover label=&quot;Deleting your account…&quot; destructive /&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
   has-info 
   no-story-error
   no-doc-error"
@@ -4747,9 +4893,9 @@ onDismiss: () =&gt; void</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> StorageIndicator</h2>
       <div class="badges">
-        <label for="c-24-settings-storageindicator-props" class="badge ok as-toggle">2 prop types</label>
-        <label for="c-24-settings-storageindicator-info" class="badge info as-toggle">1 info</label>
-        <label for="c-24-settings-storageindicator-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-25-settings-storageindicator-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-25-settings-storageindicator-info" class="badge info as-toggle">1 info</label>
+        <label for="c-25-settings-storageindicator-stories" class="badge ok as-toggle">6 stories</label>
         
       </div>
     </div>
@@ -4761,10 +4907,10 @@ onDismiss: () =&gt; void</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-24-settings-storageindicator-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-24-settings-storageindicator-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-25-settings-storageindicator-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-25-settings-storageindicator-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-24-settings-storageindicator-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-25-settings-storageindicator-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4873,9 +5019,9 @@ usage: StorageUsage | null</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SWUpdateToast</h2>
       <div class="badges">
-        <label for="c-25-app-swupdatetoast-props" class="badge ok as-toggle">3 prop types</label>
-        <label for="c-25-app-swupdatetoast-info" class="badge info as-toggle">1 info</label>
-        <label for="c-25-app-swupdatetoast-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-26-app-swupdatetoast-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-26-app-swupdatetoast-info" class="badge info as-toggle">1 info</label>
+        <label for="c-26-app-swupdatetoast-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -4887,10 +5033,10 @@ usage: StorageUsage | null</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-25-app-swupdatetoast-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-25-app-swupdatetoast-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-26-app-swupdatetoast-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-26-app-swupdatetoast-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-25-app-swupdatetoast-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-26-app-swupdatetoast-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
