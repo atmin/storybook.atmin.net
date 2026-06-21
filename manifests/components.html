@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">134 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">135 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1537,7 +1537,7 @@ userId: string</code></pre>
       <div class="badges">
         <label for="c-4-chat-chatview-props" class="badge ok as-toggle">29 prop types</label>
         <label for="c-4-chat-chatview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-4-chat-chatview-stories" class="badge ok as-toggle">20 stories</label>
+        <label for="c-4-chat-chatview-stories" class="badge ok as-toggle">21 stories</label>
         
       </div>
     </div>
@@ -1767,6 +1767,64 @@ showJumpToBottom?: boolean = false</code></pre>
             text: &#39;Nice, sounds exciting. Let me know if you need help testing.&#39;,
             timestamp: new Date(&#39;2024-01-15T10:32:00Z&#39;),
             sent: false,
+        },
+    ]}
+    loading={false}
+    sending={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Day Separators</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithDaySeparators = () =&gt; &lt;ChatView
+    onSend={fn()}
+    onBack={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;Way back when we first set this up.&#39;,
+            timestamp: new Date(Date.now() - 400 * DAY), // earlier year
+            sent: false,
+        },
+        {
+            id: &#39;2&#39;,
+            text: &#39;A note from a few days ago.&#39;,
+            timestamp: at(4, 9, 15), // this year, dated label
+            sent: true,
+        },
+        {
+            id: &#39;3&#39;,
+            text: &#39;Did you see the deploy went out?&#39;,
+            timestamp: at(1, 18, 30), // yesterday
+            sent: false,
+        },
+        {
+            id: &#39;4&#39;,
+            text: &#39;Yep — green across the board.&#39;,
+            timestamp: at(1, 18, 32), // still yesterday, no new divider
+            sent: true,
+        },
+        {
+            id: &#39;5&#39;,
+            text: &#39;Morning! Starting on the revamp today.&#39;,
+            timestamp: at(0, 8, 5), // today
+            sent: false,
+        },
+        {
+            id: &#39;6&#39;,
+            text: &#39;The date dividers look great.&#39;,
+            timestamp: at(0, 8, 10), // still today, no new divider
+            sent: true,
         },
     ]}
     loading={false}
