@@ -576,13 +576,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">133 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">134 stories ok</span></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.8s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1287,9 +1287,9 @@ timestamp: Date</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatsView</h2>
       <div class="badges">
-        <label for="c-3-chat-chatsview-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-3-chat-chatsview-props" class="badge ok as-toggle">8 prop types</label>
         <label for="c-3-chat-chatsview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-3-chat-chatsview-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-3-chat-chatsview-stories" class="badge ok as-toggle">5 stories</label>
         
       </div>
     </div>
@@ -1321,7 +1321,7 @@ timestamp: Date</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">7 prop types</span>
+              <span class="badge ok">8 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatsView.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -1330,6 +1330,11 @@ timestamp: Date</code></pre>
 conversations: StoredConversation[]
 
 displayNames: Map&lt;string, string&gt;
+
+/**
+ * Unsent drafts keyed by conversation handle (&quot;saved&quot; for Saved Messages).
+ */
+drafts?: Map&lt;string, string&gt; = new Map()
 
 onNewChat: (handle: string) =&gt; void
 
@@ -1429,6 +1434,57 @@ userId: string</code></pre>
         [&#39;01ALICE789&#39;, &#39;gentle-breeze&#39;],
     ])}
     displayNames={new Map([[&#39;01ALICE789&#39;, &#39;Alice Wonderland&#39;]])}
+    userId=&quot;01USER123&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Drafts And Deleted</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const DraftsAndDeleted = () =&gt; &lt;ChatsView
+    onNewChat={fn()}
+    onOpen={fn()}
+    serverOk
+    conversations={[
+        {
+            conversationId: &#39;dm:01USER123:01OTHER456&#39;,
+            // Stored last message — overridden in the row by the live draft.
+            lastMessageText: JSON.stringify({
+                type: &#39;text&#39;,
+                body: &#39;See you tomorrow!&#39;,
+            }),
+            lastMessageTimestamp: Date.now() - 1000 * 60 * 5,
+            messageCount: 12,
+        },
+        {
+            conversationId: &#39;dm:01USER123:01ALICE789&#39;,
+            // Latest message was deleted — the row shows &quot;[deleted]&quot;.
+            lastMessageText: &#39;&#39;,
+            lastMessageDeleted: true,
+            lastMessageTimestamp: Date.now() - 1000 * 60 * 30,
+            messageCount: 8,
+        },
+        {
+            conversationId: &#39;self:01USER123&#39;,
+            lastMessageText: JSON.stringify({
+                type: &#39;text&#39;,
+                body: &#39;Buy milk&#39;,
+            }),
+            lastMessageTimestamp: Date.now() - 1000 * 60 * 60 * 24,
+            messageCount: 3,
+        },
+    ]}
+    contacts={new Map([
+        [&#39;01OTHER456&#39;, &#39;silver-hawk&#39;],
+        [&#39;01ALICE789&#39;, &#39;gentle-breeze&#39;],
+    ])}
+    displayNames={new Map([[&#39;01ALICE789&#39;, &#39;Alice Wonderland&#39;]])}
+    drafts={new Map([
+        [&#39;silver-hawk&#39;, &#39;actually, let me check my calendar first&#39;],
+        [&#39;saved&#39;, &#39;todo: renew passport&#39;],
+    ])}
     userId=&quot;01USER123&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
