@@ -576,13 +576,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">136 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">138 stories ok</span></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.6s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -1287,9 +1287,9 @@ timestamp: Date</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatsView</h2>
       <div class="badges">
-        <label for="c-3-chat-chatsview-props" class="badge ok as-toggle">9 prop types</label>
+        <label for="c-3-chat-chatsview-props" class="badge ok as-toggle">10 prop types</label>
         <label for="c-3-chat-chatsview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-3-chat-chatsview-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-3-chat-chatsview-stories" class="badge ok as-toggle">7 stories</label>
         
       </div>
     </div>
@@ -1321,7 +1321,7 @@ timestamp: Date</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">9 prop types</span>
+              <span class="badge ok">10 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatsView.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -1351,6 +1351,11 @@ onNewChat: (handle: string) =&gt; void
 onOpen: (path: string) =&gt; void
 
 serverOk: boolean | null
+
+/**
+ * Per-conversation unread incoming-message count (ADR-0026); omits zeros.
+ */
+unread?: Map&lt;string, number&gt; = new Map()
 
 userId: string</code></pre>
           </div>
@@ -1464,6 +1469,46 @@ userId: string</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
+                <span class="ex-name">With Unread</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithUnread = () =&gt; &lt;ChatsView
+    hydrated
+    onNewChat={fn()}
+    onOpen={fn()}
+    serverOk
+    conversations={[
+        {
+            conversationId: &#39;dm:01USER123:01OTHER456&#39;,
+            lastMessageText: JSON.stringify({
+                type: &#39;text&#39;,
+                body: &#39;Did you see the latest?&#39;,
+            }),
+            lastMessageTimestamp: Date.now() - 1000 * 60 * 2,
+            messageCount: 12,
+        },
+        {
+            conversationId: &#39;dm:01USER123:01ALICE789&#39;,
+            lastMessageText: JSON.stringify({
+                type: &#39;text&#39;,
+                body: &#39;All caught up here&#39;,
+            }),
+            lastMessageTimestamp: Date.now() - 1000 * 60 * 60,
+            messageCount: 4,
+        },
+    ]}
+    contacts={new Map([
+        [&#39;01OTHER456&#39;, &#39;silver-hawk&#39;],
+        [&#39;01ALICE789&#39;, &#39;gentle-breeze&#39;],
+    ])}
+    displayNames={new Map([[&#39;01ALICE789&#39;, &#39;Alice Wonderland&#39;]])}
+    unread={new Map([[&#39;dm:01USER123:01OTHER456&#39;, 3]])}
+    userId=&quot;01USER123&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
                 <span class="ex-name">Drafts And Deleted</span>
                 <span class="badge ok">story ok</span>
               </div>
@@ -1564,9 +1609,9 @@ userId: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatView</h2>
       <div class="badges">
-        <label for="c-4-chat-chatview-props" class="badge ok as-toggle">29 prop types</label>
+        <label for="c-4-chat-chatview-props" class="badge ok as-toggle">30 prop types</label>
         <label for="c-4-chat-chatview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-4-chat-chatview-stories" class="badge ok as-toggle">21 stories</label>
+        <label for="c-4-chat-chatview-stories" class="badge ok as-toggle">22 stories</label>
         
       </div>
     </div>
@@ -1598,7 +1643,7 @@ userId: string</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">29 prop types</span>
+              <span class="badge ok">30 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatView.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -1623,6 +1668,13 @@ mediaObserve?: (url: string, el: HTMLElement | null) =&gt; void
 mediaStates?: Record&lt;string, MediaState&gt; = {}
 
 messages: Message[]
+
+/**
+ * Read watermark captured on open (ADR-0026). A &quot;New&quot; divider renders before
+ * the first incoming message newer than this. null / no message past it →
+ * no divider.
+ */
+newBoundary?: number | null = null
 
 onAttach?: (file: File) =&gt; void
 
@@ -1795,6 +1847,53 @@ showJumpToBottom?: boolean = false</code></pre>
             id: &#39;3&#39;,
             text: &#39;Nice, sounds exciting. Let me know if you need help testing.&#39;,
             timestamp: new Date(&#39;2024-01-15T10:32:00Z&#39;),
+            sent: false,
+        },
+    ]}
+    loading={false}
+    sending={false} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With New Divider</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithNewDivider = () =&gt; &lt;ChatView
+    onSend={fn()}
+    onBack={fn()}
+    encryptionReady
+    online
+    inputValue=&quot;&quot;
+    setInputValue={fn()}
+    chatTitle=&quot;copper-falcon&quot;
+    isSaved={false}
+    handle=&quot;copper-falcon&quot;
+    newBoundary={new Date(&#39;2024-01-15T10:31:30Z&#39;).getTime()}
+    messages={[
+        {
+            id: &#39;1&#39;,
+            text: &#39;A message you already saw&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:30:00Z&#39;),
+            sent: false,
+        },
+        {
+            id: &#39;2&#39;,
+            text: &#39;Your reply&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:31:00Z&#39;),
+            sent: true,
+        },
+        {
+            id: &#39;3&#39;,
+            text: &#39;This arrived since you last looked&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:32:00Z&#39;),
+            sent: false,
+        },
+        {
+            id: &#39;4&#39;,
+            text: &#39;And so did this one&#39;,
+            timestamp: new Date(&#39;2024-01-15T10:33:00Z&#39;),
             sent: false,
         },
     ]}
