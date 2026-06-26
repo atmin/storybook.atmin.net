@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">135 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">2/25 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">21/25 infos</a><span class="filter-pill ok" aria-disabled="true">136 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1287,9 +1287,9 @@ timestamp: Date</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ChatsView</h2>
       <div class="badges">
-        <label for="c-3-chat-chatsview-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-3-chat-chatsview-props" class="badge ok as-toggle">9 prop types</label>
         <label for="c-3-chat-chatsview-info" class="badge info as-toggle">1 info</label>
-        <label for="c-3-chat-chatsview-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-3-chat-chatsview-stories" class="badge ok as-toggle">6 stories</label>
         
       </div>
     </div>
@@ -1321,7 +1321,7 @@ timestamp: Date</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">8 prop types</span>
+              <span class="badge ok">9 prop types</span>
             </div>
             <pre><code>Component: src/components/ChatsView.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
@@ -1335,6 +1335,13 @@ displayNames: Map&lt;string, string&gt;
  * Unsent drafts keyed by conversation handle (&quot;saved&quot; for Saved Messages).
  */
 drafts?: Map&lt;string, string&gt; = new Map()
+
+/**
+ * False until the first IndexedDB read resolves. Gates the empty state so a
+ * populated account never flashes &quot;No conversations yet&quot; on reload while the
+ * local read is in flight.
+ */
+hydrated: boolean
 
 onNewChat: (handle: string) =&gt; void
 
@@ -1369,6 +1376,24 @@ userId: string</code></pre>
               
               
               <pre><code>const Empty = () =&gt; &lt;ChatsView
+    hydrated
+    onNewChat={fn()}
+    onOpen={fn()}
+    serverOk
+    conversations={[]}
+    contacts={new Map()}
+    displayNames={new Map()}
+    userId=&quot;01USER123&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Hydrating</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Hydrating = () =&gt; &lt;ChatsView
+    hydrated={false}
     onNewChat={fn()}
     onOpen={fn()}
     serverOk
@@ -1385,6 +1410,7 @@ userId: string</code></pre>
               
               
               <pre><code>const WithConversations = () =&gt; &lt;ChatsView
+    hydrated
     onNewChat={fn()}
     onOpen={fn()}
     serverOk
@@ -1444,6 +1470,7 @@ userId: string</code></pre>
               
               
               <pre><code>const DraftsAndDeleted = () =&gt; &lt;ChatsView
+    hydrated
     onNewChat={fn()}
     onOpen={fn()}
     serverOk
@@ -1495,6 +1522,7 @@ userId: string</code></pre>
               
               
               <pre><code>const ServerDown = () =&gt; &lt;ChatsView
+    hydrated
     onNewChat={fn()}
     onOpen={fn()}
     serverOk={false}
@@ -1511,6 +1539,7 @@ userId: string</code></pre>
               
               
               <pre><code>const ServerConnecting = () =&gt; &lt;ChatsView
+    hydrated
     onNewChat={fn()}
     onOpen={fn()}
     serverOk={null}
